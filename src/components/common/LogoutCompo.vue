@@ -22,8 +22,8 @@ data(){
 methods:{
   logOut(){
     sessionStorage.clear();
+    this.$emit('logout',false,false);
     this.$router.push({name:'home-page'});
-    this.$emit('logout',false)
   },
   close(){
     this.$emit('close',false)

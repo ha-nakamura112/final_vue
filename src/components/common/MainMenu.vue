@@ -41,7 +41,7 @@
 
 <script>
 import LogoutCompo from './LogoutCompo.vue';
-import LogoutCompoVue from './LogoutCompo.vue';
+
 export default {
   name: "MainMenu",
   components:{
@@ -50,7 +50,8 @@ export default {
   props:["logFlag", "productCount"],
   data(){
     return {
-      logout:false
+      logout:false,
+      flag:true
     }
   },
   methods :{
@@ -63,17 +64,20 @@ export default {
     lChg(){
       this.logout = ! this.logout
     },
-    setlogoutFlag(val){
+    // here is the problem
+    setlogoutFlag(val,flag){
       this.logout = val;
       this.logFlag = val;
-      this.$emit('logFlag',false)
+      this.flag = flag;
+      this.$emit('logFlag',false);
     }
   },
   watch:{
-    // logFlag: function(){
-    //   this.logFlag = val;
-    // }
-
+    flag: function(val){
+      console.log(val)
+      this.logFlag = val;
+      return val;
+    }
   }
 };
 </script>

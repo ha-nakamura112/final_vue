@@ -138,6 +138,7 @@ export default {
     loadSession(){
       this.userinfo = JSON.parse(sessionStorage.getItem('user'));
       if(this.userinfo){
+        console.log(this.userinfo)
         this.fname  = this.userinfo.fName;
         this.lname = this.userinfo.lName;
         this.country = this.userinfo.country;
@@ -167,6 +168,10 @@ export default {
     },
     flag:function(){
       this.loadSession();
+    },
+    logFlag: function() {
+       this.setUserinfo();
+       this.loadSession();
     }
   }
   

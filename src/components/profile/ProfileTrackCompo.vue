@@ -22,7 +22,7 @@ import StarRating from 'vue-star-rating';
 
 export default {
   name: "ProfileTrackPage",
-  props:['loggedUser'],
+  props:['loggedUser','shoppingList'],
   components:{
     StarRating
   },
@@ -38,6 +38,9 @@ export default {
     }
   },
   methods:{
+    func(){
+      this.shoppingList;
+    },
     setUserinfo(){
       if(!sessionStorage.getItem('user')){
         this.userinfo = '';
@@ -72,7 +75,7 @@ export default {
           selectedProds.push({id:purchase.product_id,date:purchase.datetime});
         }
       })
-      console.log(selectedProds)
+      // console.log(selectedProds)
       let track = new Map();
       let product = '';
       this.products.forEach(function(prod){
@@ -101,6 +104,7 @@ export default {
     },
     flag:function(){
       this.setTracking();
+      this.func();
     }
   }
 

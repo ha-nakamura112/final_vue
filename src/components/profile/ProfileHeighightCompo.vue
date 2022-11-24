@@ -5,32 +5,24 @@
       <h3>Recommand Products</h3>
       <div class="cBox">
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="female"> Female
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "female"> Female
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="male"> male
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "male"> male
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="young"> under 40
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "young"> under 40
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="old"> older than 40
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "old"> older than 40
         </div>
       </div>
-      <!-- <swiper :slidesPerView="3" :spaceBetween="10"  :navigation="true" :modules="modules" class="mySwiper">
-      <swiper-slide v-for="(prod, idx) in heighlight" :key="idx">
-        <img class="slideImg" :src="prod[1].image_path_0">
-        <h1>{{prod[1].name}}</h1>
-        <h1>{{prod[1].ocuntry}}</h1>
-        <h1>{{prod[1].price}}</h1>
-      </swiper-slide>
-      </swiper> -->
       <div class="prods">
         <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
-        <h2>{{prod[1].name}}</h2>
-        <h1>{{prod[1].ocuntry}}</h1>
-        <img :src="prod[1].image_path_0" alt="img">
-        <h1>{{prod[1].price}}</h1>
+        <h2>{{prod.name}}</h2>
+        <h1>{{prod.ocuntry}}</h1>
+        <img :src="prod.image_path_0" alt="img">
+        <h1>{{prod.price}}</h1>
         </div>
       </div>
     </div>
@@ -59,14 +51,12 @@ export default {
       heighlight:new Map(),
       users:[],
       flag:false,
-      maleProds : new Map(),
-      femaleProds : new Map(),
-      oldProds : new Map(),
-      youngProds : new Map(),
-      female:false,
-      male:false,
-      young:false,
-      old:false
+      maleProds : [],
+      femaleProds : [],
+      oldProds : [],
+      youngProds : [],
+      val:'',
+      male:[],
     }
   },
   methods:{
@@ -159,6 +149,14 @@ export default {
       this.chg(oldProd,this.oldProds)
       this.chg(youngProd,this.youngProds)
 
+      console.log(this.maleProds)
+      // console.log(this.femaleProds)
+      // console.log(this.oldProds)
+      // console.log(this.youngProds)
+      this.sortHeighlight(this.maleProds,this.male)
+      console.log(this.maleProds)
+
+
     },
     setHighlight(){
       if(sessionStorage.getItem('user')){
@@ -169,40 +167,48 @@ export default {
         }
       }
     },
-    chg(prodlist,map){
+    sortHeighlight(array,newArray){
+          for(let i = 0; i < array.length; i++){
+            for(let k = i+1; k < array.length ; k++){
+              console.log(array[i])
+              // console.log(array[k].rates)
+              if(array[i].rates < array[k].rates){
+                newArray.push(array[i]);
+              }
+            }
+          }
+    },
+    chg(prodlist,array){
       let prods = this.products;
       prodlist.forEach(function(male){
         prods.forEach(function(prod){
           if(male.pId == prod.id){
             prod.rates = male.amount;
-            map.set(male.pId, prod);
+            array.push(prod);
           }
         })
       })
-      return map;
+      return array;
     },
     chgHeigh(){
-      if(this.male === true){
-        this.young = false;
-        this.old = false;
-        this.female = false;
-        this.heighlight = this.maleProds;
-      }else if(this.female === true){
-        this.young = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.femaleProds;        
-      }else if(this.old === true){
-        this.young = false;
-        this.female = false;
-        this.male = false;
-        this.heighlight = this.oldProds;        
-      }else if(this.young === true){
-        this.female = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.youngProds;        
-      }
+      this.val = document.querySelector('input[name="rate"]:checked').value;
+        switch(this.val){
+          case 'male':
+          this.heighlight = this.maleProds;
+          break;
+
+          case 'female':
+            this.heighlight = this.femaleProds;
+            break;
+          
+          case 'old' : 
+          this.heighlight = this.oldProds;
+          break;
+
+          case 'young' :
+            this.heighlight = this.youngProds;
+            break;
+        }
     }
   },
   mounted(){
@@ -218,6 +224,9 @@ export default {
     },
     flag:function(){
       this.setHighlight();
+    },
+    val: function(){
+      this.chgHeigh();
     }
   }
   

@@ -1,5 +1,4 @@
 <template>
-
   <body>
     <div class="cover">
       <div class="header-logo">
@@ -100,7 +99,7 @@ export default {
     },
     setShoppingList(fname,lname){
       this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), fname +" "+ lname);
-      console.log(JSON.stringify(this.shoppingList.toObj()))
+      // console.log(JSON.stringify(this.shoppingList.toObj()))
       this.logFlag = true;
     },
     chkSession(){
@@ -115,7 +114,7 @@ export default {
       }else{
         this.logFlag = false;
       }
-      console.log(this.shoppingList)
+      // console.log(this.shoppingList)
     }
   },
   mounted(){
