@@ -23,7 +23,7 @@ export default {
     logOut() {
       sessionStorage.clear();
       this.$router.push({ name: 'home-page' });
-      this.$emit('logout', false)
+      this.$emit('logout', false,'')
     },
     close() {
       this.$emit('close', false)

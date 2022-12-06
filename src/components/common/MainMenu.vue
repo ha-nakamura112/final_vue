@@ -19,7 +19,7 @@
         <div class="nav-icons">
           <li @click="clickProfile">
             <router-link class="router-link" to="/profile">
-              <i class="fa-solid fa-user" />
+              <i class="fa-solid fa-user" ></i>
             </router-link>
           </li>
           <li>
@@ -27,8 +27,8 @@
             <!-- settings: logout -->
           </li>
           <li id="cart" v-show="logFlag">
-            <router-link @click="setShopSession" class="router-link" to="/cart"
-              ><i class="fa-solid fa-cart-shopping" /><span>{{
+            <router-link v-show="cart" @click="setShopSession" class="router-link" to="/cart"
+              ><i class="fa-solid fa-cart-shopping"></i><span>{{
                 productCount
               }}</span></router-link
             >
@@ -42,7 +42,6 @@
 
 <script>
 import LogoutCompo from './LogoutCompo.vue';
-import LogoutCompoVue from './LogoutCompo.vue';
 export default {
   name: "MainMenu",
   components: {
@@ -51,7 +50,8 @@ export default {
   props: ["logFlag", "productCount"],
   data() {
     return {
-      logout: false
+      logout: false,
+      cart:true
     }
   },
   methods: {
@@ -66,15 +66,15 @@ export default {
     },
     setlogoutFlag(val) {
       this.logout = val;
-      // this.logFlag = val;
-      this.$emit('logFlag', false)
+      this.cart = val;
+      // this.$emit('
+      // ', false)
     }
   },
   watch: {
     // logFlag: function(){
     //   this.logFlag = val;
     // }
-
   }
 };
 </script>

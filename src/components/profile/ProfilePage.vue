@@ -217,7 +217,7 @@ export default {
   border: 1px solid #FDEEC0;
   height: 45vh;
   width: 86vh;
-  position: absolute;
+  position: fixed;
   top: 25%;
   left: 30%;
   z-index: 4;
@@ -235,8 +235,8 @@ export default {
   border: 1px solid #fdeec0;
   height: 75vh;
   width: 77vh;
-  position: absolute;
-  top: 25%;
+  position: fixed;
+  top: 2%;
   left: 30%;
   z-index: 4;
   row-gap: 5vh;

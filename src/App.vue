@@ -67,17 +67,6 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    // // fetch
-    // loadProductJson() {
-    //   console.log("loadProductJson");
-    //   fetch("data/json/productJson.json")
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       this.products = data;
-    //       console.log(this.products);
-    //     })
-    //     .catch((err) => console.log(err));
-    // },
     loadPurchasedJson() {
       PurchasedService.getJson()
         .then((res) => console.log(res.data))
@@ -130,9 +119,7 @@ export default {
     },
   },
   mounted() {
-    // this.loadUserJson();
     this.loadProductJson();
-    // this.loadPurchasedJson();
     this.chkSession();
   },
   watch: {

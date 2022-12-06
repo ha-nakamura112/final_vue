@@ -5,26 +5,18 @@
       <h3>Recommended Products</h3>
       <div class="cBox">
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="female" /> female
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "female"> Female
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="male" /> male
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "male"> male
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="young" /> under 40
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "young"> under 40
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="old" /> over 40
+          <input type="radio" class="radio" name = "rate" @change="chgHeigh" value = "old"> older than 40
         </div>
       </div>
-      <!-- <swiper :slidesPerView="3" :spaceBetween="10"  :navigation="true" :modules="modules" class="mySwiper">
-      <swiper-slide v-for="(prod, idx) in heighlight" :key="idx">
-        <img class="slideImg" :src="prod[1].image_path_0">
-        <h1>{{prod[1].name}}</h1>
-        <h1>{{prod[1].ocuntry}}</h1>
-        <h1>{{prod[1].price}}</h1>
-      </swiper-slide>
-      </swiper> -->
       <div class="prods">
         <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
           <img :src="prod[1].image_path_0" alt="img" />
@@ -43,15 +35,12 @@
 import JsonService from "../../services/JsonService";
 // npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
-import { Swiper, SwiperSlide } from "swiper/vue";
 
 export default {
   name: "ProfileHeighlightPage",
   props: ["loggedUser"],
   components: {
-    StarRating,
-    Swiper,
-    SwiperSlide,
+    StarRating
   },
   data() {
     return {
@@ -202,28 +191,25 @@ export default {
       });
       return map;
     },
-    chgHeigh() {
-      if (this.male === true) {
-        this.young = false;
-        this.old = false;
-        this.female = false;
-        this.heighlight = this.maleProds;
-      } else if (this.female === true) {
-        this.young = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.femaleProds;
-      } else if (this.old === true) {
-        this.young = false;
-        this.female = false;
-        this.male = false;
-        this.heighlight = this.oldProds;
-      } else if (this.young === true) {
-        this.female = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.youngProds;
-      }
+    chgHeigh(){
+      this.val = document.querySelector('input[name="rate"]:checked').value;
+        switch(this.val){
+          case 'male':
+          this.heighlight = this.maleProds;
+          break;
+
+          case 'female':
+            this.heighlight = this.femaleProds;
+            break;
+          
+          case 'old' : 
+          this.heighlight = this.oldProds;
+          break;
+
+          case 'young' :
+            this.heighlight = this.youngProds;
+            break;
+        }
     },
     goto(){
       this.$router.push({ name: 'products-page' });

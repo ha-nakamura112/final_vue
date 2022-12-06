@@ -8,7 +8,6 @@
       <h1>RECIPES</h1>
       <aside class="lines01"></aside>
     </div>
-    <!-- logo -->
     <div class="recipes">
       <figure>
         <img src="../../img/dark-stormy.webp" alt="recipe1" />
