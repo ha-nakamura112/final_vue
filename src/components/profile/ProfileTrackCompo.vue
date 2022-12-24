@@ -20,6 +20,7 @@ import JsonService from '../../services/JsonService';
 import StarRating from 'vue-star-rating';
 
 
+
 export default {
   name: "ProfileTrackPage",
   props:['loggedUser','shoppingList'],
@@ -38,9 +39,9 @@ export default {
     }
   },
   methods:{
-    func(){
-      this.shoppingList;
-    },
+    // func(){
+    //   this.shoppingList;
+    // },
     setUserinfo(){
       if(!sessionStorage.getItem('user')){
         this.userinfo = '';
@@ -104,7 +105,7 @@ export default {
     },
     flag:function(){
       this.setTracking();
-      this.func();
+      // this.func();
     }
   }
 

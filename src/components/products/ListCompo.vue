@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Products</h1>
+    <!-- <h1>Products</h1> -->
     <!-- display products -->
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
@@ -26,3 +26,25 @@ export default {
   },
 }
 </script>
+<style scoped>
+  .products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:5%;
+  }
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  img {
+    width: 15rem;
+    height: 20rem;
+  }
+</style>

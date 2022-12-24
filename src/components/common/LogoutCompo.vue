@@ -23,6 +23,7 @@ methods:{
   logOut(){
     sessionStorage.clear();
     this.$emit('logout',false,false);
+    this.$emit('flag',false);
     this.$router.push({name:'home-page'});
   },
   close(){

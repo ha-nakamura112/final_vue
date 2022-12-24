@@ -35,11 +35,12 @@
         </div>
       </ul>
     </nav>
-    <logout-compo @close = close @logout = 'setlogoutFlag' v-if="logout"></logout-compo>
+    <logout-compo @close = close @logout = 'setlogoutFlag' @flag = "setFlag" v-if="logout"></logout-compo>
   </div>
 </template>
 
 <script>
+import { value } from 'dom7';
 import LogoutCompo from './LogoutCompo.vue';
 
 export default {
@@ -55,6 +56,10 @@ export default {
     }
   },
   methods :{
+    setFlag(val){
+      this.logFlag = val;
+      this.$emit('logFlag',val);
+    },
     close(val){
       this.logout = val;
     },
@@ -62,22 +67,18 @@ export default {
       this.$emit('shoppingFlag', true)
     },
     lChg(){
-      this.logout = ! this.logout
+      this.logout = !this.logout
     },
     // here is the problem
-    setlogoutFlag(val,flag){
+    setlogoutFlag(val){
       this.logout = val;
       this.logFlag = val;
-      this.flag = flag;
-      this.$emit('logFlag',false);
     }
   },
   watch:{
-    flag: function(val){
-      console.log(val)
-      this.logFlag = val;
-      return val;
-    }
+    // logout: function(val){
+    //   this.setlogoutFlag(val)
+    // }
   }
 };
 </script>

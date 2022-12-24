@@ -1,7 +1,7 @@
 <template>
   <div class="products-page">
     <h1>Products</h1>
-    <search-compo></search-compo>
+    <search-compo style="height:4em; margin-left: 5%;"></search-compo>
     <div>
       <ProductsMapCompo :products="products" @country="getCountry" />
       <ProductsListCompo :products="displayProds" />
