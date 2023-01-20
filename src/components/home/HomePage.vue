@@ -5,7 +5,7 @@
     <!-- WELCOME -->
     <section>
       <figure class="welcome">
-        <img src="../../img/welcome-01.png" alt="welcome">
+        <img src="data/images/home/welcome-01.png" alt="welcome">
       </figure>
     </section>
     <!-- Best Seller -->
