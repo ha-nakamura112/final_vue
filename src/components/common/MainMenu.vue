@@ -72,7 +72,7 @@ export default {
     }
   },
   watch: {
-    // logFlag: function(){
+    // logFlag: function(val){
     //   this.logFlag = val;
     // }
   }
